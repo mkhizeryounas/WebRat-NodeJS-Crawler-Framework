@@ -17,7 +17,8 @@ async function crowlerInit() {
   try {
     await mod($, function(err, data) {
       try {
-        console.success("Callback Success:", data);
+        if (err) throw err;
+        console.info("Callback Success:", data);
       } catch (err) {
         console.error("Callback Error:", err);
       }
