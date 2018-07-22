@@ -4,16 +4,23 @@ const { JSDOM } = jsdom;
 const { window } = new JSDOM();
 const { document } = new JSDOM("").window;
 global.document = document;
-
 var $ = (jQuery = require("jquery")(window));
+$.fetch = rp;
 
-async function crawler() {
-  let url = "https://beta.zameen.com/Plots/Lahore_DHA_Defence-9-1.html";
-  let content = await rp(url);
-  console.log(
-    ".listig-card-outter",
-    $(content).find(".listig-card-outter").length
-  );
+async function crowlerInit() {
+  let filePath = process.argv.slice(2);
+  if (!filePath.length)
+    throw {
+      error: "File path required"
+    };
+  let mod = require(`./${filePath[0]}`);
+  try {
+    await mod($, function(data) {
+      console.info("Callback Result:", data);
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-crawler();
+crowlerInit();
