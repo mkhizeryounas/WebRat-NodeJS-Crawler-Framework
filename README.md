@@ -29,7 +29,7 @@ node index.js <path-to-crawler-file>
 ```
 ### Explain
 Following are the params which is required by a crawler.
- - <b>$</b> Includes all jquery functions. To fetch a url use `$.fetch` (for more docs see request-promise module (https://www.npmjs.com/package/request-promise)) instead of `$.ajax`
+ - <b>$</b> Includes all jquery functions. To fetch a url use `$.fetch` (for more docs see request-promise module https://www.npmjs.com/package/request-promise) instead of `$.ajax`
  - <b>callback</b> Should be called when you are done with the crawler as `callback(err, res)`
  
 
