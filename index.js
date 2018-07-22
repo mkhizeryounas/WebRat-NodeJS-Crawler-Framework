@@ -6,25 +6,23 @@ const { document } = new JSDOM("").window;
 global.document = document;
 var $ = (jQuery = require("jquery")(window));
 $.fetch = rp;
+var chalk = require("chalk");
 
 async function crowlerInit() {
   let filePath = process.argv.slice(2);
-  if (!filePath.length)
-    throw {
-      error: "File path required"
-    };
-  let mod = require(`./${filePath[0]}`);
   try {
+    if (!filePath.length) throw "File path required";
+    let mod = require(`./${filePath[0]}`);
     await mod($, function(err, data) {
       try {
         if (err) throw err;
-        console.info("Callback Success:", data);
+        console.log(chalk.green("Callback Success:"), data);
       } catch (err) {
-        console.error("Callback Error:", err);
+        console.log(chalk.red("Callback Error:"), err);
       }
     });
   } catch (err) {
-    console.error(err);
+    console.log(chalk.red("App Error"), err);
   }
 }
 
