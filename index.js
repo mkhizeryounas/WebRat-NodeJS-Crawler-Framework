@@ -22,7 +22,7 @@ async function crowlerInit() {
       }
     });
   } catch (err) {
-    console.log(chalk.red("App Error"), err);
+    console.log(chalk.red("Application Error"), err);
   }
 }
 
