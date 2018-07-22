@@ -15,8 +15,12 @@ async function crowlerInit() {
     };
   let mod = require(`./${filePath[0]}`);
   try {
-    await mod($, function(data) {
-      console.info("Callback Result:", data);
+    await mod($, function(err, data) {
+      try {
+        console.success("Callback Success:", data);
+      } catch (err) {
+        console.error("Callback Error:", err);
+      }
     });
   } catch (err) {
     console.error(err);
